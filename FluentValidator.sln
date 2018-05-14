@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentValidator", "FluentValidator\FluentValidator.csproj", "{7D676BE2-275A-4B7E-81B2-26E4891CF801}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentValidator.UnitTests", "FluentValidator.UnitTests\FluentValidator.UnitTests.csproj", "{877FCD1A-9655-407E-90C8-8E028AE55C53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7D676BE2-275A-4B7E-81B2-26E4891CF801}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D676BE2-275A-4B7E-81B2-26E4891CF801}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D676BE2-275A-4B7E-81B2-26E4891CF801}.Release|Any CPU.Build.0 = Release|Any CPU
+		{877FCD1A-9655-407E-90C8-8E028AE55C53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{877FCD1A-9655-407E-90C8-8E028AE55C53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{877FCD1A-9655-407E-90C8-8E028AE55C53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{877FCD1A-9655-407E-90C8-8E028AE55C53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
