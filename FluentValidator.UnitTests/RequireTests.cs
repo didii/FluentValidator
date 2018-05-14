@@ -17,7 +17,7 @@ namespace FluentValidator.UnitTests {
 
             //Assert
             AssertHelper.MessageCount(messages, 1);
-            AssertHelper.Path(messages.First().Path, "/Id");
+            AssertHelper.Paths(messages.First().Paths, "/Id");
         }
 
         [Test]
@@ -46,7 +46,7 @@ namespace FluentValidator.UnitTests {
 
             //Assert
             AssertHelper.MessageCount(messages, 1);
-            AssertHelper.Path(messages.First().Path, "/Name");
+            AssertHelper.Paths(messages.First().Paths, "/Name");
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace FluentValidator.UnitTests {
 
             //Assert
             AssertHelper.MessageCount(messages, 1);
-            AssertHelper.Path(messages.First().Path, "/Name");
+            AssertHelper.Paths(messages.First().Paths, "/Name");
         }
 
         [Test]
@@ -91,7 +91,7 @@ namespace FluentValidator.UnitTests {
 
             //Assert
             AssertHelper.MessageCount(messages, 1);
-            AssertHelper.Path(messages.First().Path, "/Amount");
+            AssertHelper.Paths(messages.First().Paths, "/Amount");
         }
 
         [Test]
@@ -120,7 +120,7 @@ namespace FluentValidator.UnitTests {
 
             //Assert
             AssertHelper.MessageCount(messages, 1);
-            AssertHelper.Path(messages.First().Path, "/Nested");
+            AssertHelper.Paths(messages.First().Paths, "/Nested");
         }
 
         [Test]

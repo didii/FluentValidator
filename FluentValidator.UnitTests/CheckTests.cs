@@ -14,7 +14,7 @@ namespace FluentValidator.UnitTests {
                                .Build();
 
             AssertHelper.MessageCount(messages, 1);
-            AssertHelper.Path(messages.First().Path, "/Name");
+            AssertHelper.Paths(messages.First().Paths, "/Name");
         }
 
         [Test]
@@ -26,7 +26,7 @@ namespace FluentValidator.UnitTests {
                                .Build();
 
             AssertHelper.MessageCount(messages, 1);
-            AssertHelper.Path(messages.First().Path, "/Name");
+            AssertHelper.Paths(messages.First().Paths, "/Name");
         }
 
         [Test]
@@ -38,7 +38,7 @@ namespace FluentValidator.UnitTests {
                                .Build();
 
             AssertHelper.MessageCount(messages, 1);
-            AssertHelper.Path(messages.First().Path, "/Ints");
+            AssertHelper.Paths(messages.First().Paths, "/Ints");
         }
 
         [Test]
@@ -50,7 +50,7 @@ namespace FluentValidator.UnitTests {
                                .Build();
 
             AssertHelper.MessageCount(messages, 1);
-            AssertHelper.Path(messages.First().Path, "/Ints");
+            AssertHelper.Paths(messages.First().Paths, "/Ints");
         }
 
         [Test]
@@ -62,7 +62,7 @@ namespace FluentValidator.UnitTests {
                                .Build();
 
             AssertHelper.MessageCount(messages, 1);
-            AssertHelper.Path(messages.First().Path, "/Amount", "/Ints");
+            AssertHelper.Paths(messages.First().Paths, "/Amount", "/Ints");
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace FluentValidator.UnitTests {
 
             //Assert
             AssertHelper.MessageCount(messages, 1);
-            AssertHelper.Path(messages.First().Path, "/Nested/Name");
+            AssertHelper.Paths(messages.First().Paths, "/Nested/Name");
         }
 
         [Test]
@@ -98,7 +98,7 @@ namespace FluentValidator.UnitTests {
 
             //Assert
             AssertHelper.MessageCount(messages, 1);
-            AssertHelper.Path(messages.First().Path, "/Nesteds/Name");
+            AssertHelper.Paths(messages.First().Paths, "/Nesteds/Name");
         }
     }
 }

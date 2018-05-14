@@ -17,7 +17,7 @@ namespace FluentValidator.UnitTests {
 
             //Assert
             AssertHelper.MessageCount(messages, 1);
-            AssertHelper.Path(messages.First().Path, "/NestedId", "/Nested");
+            AssertHelper.Paths(messages.First().Paths, "/NestedId", "/Nested");
         }
 
         [Test]

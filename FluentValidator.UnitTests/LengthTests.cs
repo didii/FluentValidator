@@ -29,7 +29,7 @@ namespace FluentValidator.UnitTests {
 
             //Assert
             AssertHelper.MessageCount(messages, 1);
-            AssertHelper.Path(messages.First().Path, "/Ints");
+            AssertHelper.Paths(messages.First().Paths, "/Ints");
         }
 
         [Test]
@@ -56,7 +56,7 @@ namespace FluentValidator.UnitTests {
 
             //Assert
             AssertHelper.MessageCount(messages, 1);
-            Assert.That(messages.First().Path, Is.EqualTo("/Ints"));
+            AssertHelper.Paths(messages.First().Paths, "/Ints");
         }
 
         [Test]
@@ -109,7 +109,7 @@ namespace FluentValidator.UnitTests {
 
             //Assert
             AssertHelper.MessageCount(messages, 1);
-            AssertHelper.Path(messages.First().Path, "/Ints");
+            AssertHelper.Paths(messages.First().Paths, "/Ints");
         }
 
         [Test]
@@ -136,7 +136,7 @@ namespace FluentValidator.UnitTests {
 
             //Assert
             AssertHelper.MessageCount(messages, 1);
-            AssertHelper.Path(messages.First().Path, "/Ints");
+            AssertHelper.Paths(messages.First().Paths, "/Ints");
         }
 
         [Test]
@@ -170,13 +170,13 @@ namespace FluentValidator.UnitTests {
             //Arrange
             var obj = new ParentObject() {Ints = new[] {1, 2, 3, 4}};
             _sut = new ValidationBuilder<ParentObject>(obj);
-
+            
             //Act
             var messages = _sut.Length(o => o.Ints, 1, 3).Build();
 
             //Assert
             AssertHelper.MessageCount(messages, 1);
-            AssertHelper.Path(messages.First().Path, "/Ints");
+            AssertHelper.Paths(messages.First().Paths, "/Ints");
         }
 
         [Test]

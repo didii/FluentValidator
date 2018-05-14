@@ -49,7 +49,7 @@ namespace FluentValidator {
                 AddMessage(new ValidationMessage() {
                     Title = "A custom check failed",
                     Message = $"The check {check.Body} evaluated to false",
-                    Path = GetPropertyPaths(members)
+                    Paths = GetPropertyPaths(members)
                 });
             }
             return this;
@@ -63,7 +63,7 @@ namespace FluentValidator {
                 AddMessage(new ValidationMessage() {
                     Title = "A custom check failed",
                     Message = $"The expression {check.Body} evaluated to false",
-                    Path = GetPropertyPath(expression)
+                    Paths = GetPropertyPath(expression)
                 });
             }
             return this;
@@ -77,7 +77,7 @@ namespace FluentValidator {
                 AddMessage(new ValidationMessage() {
                     Title = RequireTitle,
                     Message = "This property must have a non-null or non-zero value",
-                    Path = GetPropertyPath(expression)
+                    Paths = GetPropertyPath(expression)
                 });
             }
             return this;
@@ -94,7 +94,7 @@ namespace FluentValidator {
                 AddMessage(new ValidationMessage() {
                     Title = RequireTitle,
                     Message = RequireAnyMessage,
-                    Path = GetPropertyPaths(new[] {
+                    Paths = GetPropertyPaths(new[] {
                         expression1.Body as MemberExpression,
                         expression2.Body as MemberExpression
                     })
@@ -115,7 +115,7 @@ namespace FluentValidator {
                 AddMessage(new ValidationMessage() {
                     Title = RequireTitle,
                     Message = RequireAnyMessage,
-                    Path = GetPropertyPaths(new[] {
+                    Paths = GetPropertyPaths(new[] {
                         expression1.Body as MemberExpression,
                         expression2.Body as MemberExpression,
                         expression3.Body as MemberExpression
@@ -139,7 +139,7 @@ namespace FluentValidator {
                 AddMessage(new ValidationMessage() {
                     Title = RequireTitle,
                     Message = RequireAnyMessage,
-                    Path = GetPropertyPaths(new[] {
+                    Paths = GetPropertyPaths(new[] {
                         expression1.Body as MemberExpression,
                         expression2.Body as MemberExpression,
                         expression3.Body as MemberExpression,
@@ -160,7 +160,7 @@ namespace FluentValidator {
                 AddMessage(new ValidationMessage() {
                     Title = "A field does not match the required length constraint",
                     Message = $"This property must have a length equal to {exact} (actual: {value})",
-                    Path = GetPropertyPath(expression)
+                    Paths = GetPropertyPath(expression)
                 });
             }
 
@@ -184,7 +184,7 @@ namespace FluentValidator {
                 AddMessage(new ValidationMessage() {
                     Title = "A field does not match the required length constraint",
                     Message = message,
-                    Path = GetPropertyPath(expression)
+                    Paths = GetPropertyPath(expression)
                 });
             }
 
@@ -205,7 +205,7 @@ namespace FluentValidator {
                 AddMessage(new ValidationMessage() {
                     Title = "A property has a wrong value",
                     Message = $"Value {expected} was expected but got {value}",
-                    Path = GetPropertyPath(expression),
+                    Paths = GetPropertyPath(expression),
                     Data = {{"Expected", expected}, {"Actual", value}}
                 });
             }
@@ -227,7 +227,7 @@ namespace FluentValidator {
                 AddMessage(new ValidationMessage() {
                     Title = "A property has a forbidden value",
                     Message = $"Value {value} is forbidden",
-                    Path = GetPropertyPath(expression)
+                    Paths = GetPropertyPath(expression)
                 });
             }
 
@@ -258,20 +258,16 @@ namespace FluentValidator {
 
 
 
-        private string GetPropertyPath<TProp>(Expression<Func<TObject, TProp>> expression) {
+        private IEnumerable<string> GetPropertyPath<TProp>(Expression<Func<TObject, TProp>> expression) {
             return GetPropertyPath(expression.Body as MemberExpression);
         }
 
-        private string GetPropertyPaths<TProp>(IEnumerable<Expression<Func<TObject, TProp>>> expression) {
-            return expression.Select(GetPropertyPath).Aggregate((a, b) => $"{a}, {b}");
+        private IEnumerable<string> GetPropertyPath(MemberExpression expression) {
+            return new []{"/" + GetPropertyNames(expression).Aggregate((a, b) => $"{a}/{b}")};
         }
 
-        private string GetPropertyPath(MemberExpression expression) {
-            return "/" + GetPropertyNames(expression).Aggregate((a, b) => $"{a}/{b}");
-        }
-
-        private string GetPropertyPaths(IEnumerable<MemberExpression> expression) {
-            return expression.Select(e => "/" + GetPropertyNames(e).Aggregate((a, b) => $"{a}/{b}")).Aggregate((a, b) => $"{a}, {b}");
+        private IEnumerable<string> GetPropertyPaths(IEnumerable<MemberExpression> expression) {
+            return expression.Select(e => "/" + GetPropertyNames(e).Aggregate((a, b) => $"{a}/{b}"));
         }
 
         private string Combine(string separator, params string[] strings) {
